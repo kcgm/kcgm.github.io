@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
 .countCont{
-    display:grid;
+    /* display:grid; */
     text-align: center;   
     align-self: center;
-    grid-template-columns: repeat(4, 150px) ; 
+    /* grid-template-columns: repeat(4, 150px) ;  */
     transform: translate(-50%,-50%);
     position: absolute;
     left: 50%;
     top: 50%;
     font-size: 2em;
     font-family: Rockwell;
-    grid-gap: 50px;
+    /* grid-gap: 50px; */
 }
 
 #confetti-holder{
@@ -57,9 +57,14 @@ body{
     right: 0; 
   } 
 
-  .me{
+  .sendSms{
     position:absolute; 
-    bottom: 0px; 
+    bottom: 5%; 
+  }
+
+  .me {
+    position:absolute; 
+    bottom: 0; 
   }
 
   .bdayMsg{
@@ -70,6 +75,10 @@ body{
     text-align: center;
     font-size: 2em;
     font-family: Rockwell;
+  }
+
+  .uppercase{
+    text-transform: uppercase;
   }
 
   .days,.hrs,.mins,.sec{

@@ -1,20 +1,19 @@
+// Contfetti Background
 var confettiSettings = { "target": "confetti-holder", 
-"max": "40", 
 "size": "1", 
 "props": ["circle", "square", "triangle", "line", 
-{ "type": "svg", "src": "images/sarmie.png", "size": 40, "weight": 1 }
-],
- "colors": [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]], 
- "clock": "20", 
- "respawn": true };
+// { "type": "svg", "src": "images/sarmie.png", "size": 40, "weight": 1, }
+],};
 
 var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
 
 const greetings='Happy Birthday ';
-const name ='Ruel';
+const name ='Ruel ';
 const bDate='05/16/2021 00:00:00';
 
+
+//CountDown Timer
 var sec = 1000,
     min = sec * 60,
     hr = min * 60,
@@ -47,14 +46,19 @@ setInterval(function getCountDown(){
     
 },sec);
 
+//Click Gift to Open Msg
 function openGift(){
     document.getElementsByClassName("gift-box")[0].classList.add("hide");
+    var canvasC= document.getElementById("fireworks");
     var bdayMsg=document.getElementsByClassName("bdayMsg")[0];
     bdayMsg.classList.remove("hide");
-    document.getElementsByClassName("bdName")[0].innerHTML=name;
+    document.getElementsByClassName("bdName")[0].innerHTML=name; 
+    document.getElementsByClassName("sendSms")[0].classList.remove("hide");
+    document.getElementById("playMusic").play();
+    document.getElementById("playMusic").loop = true;
 }
  
- 
+//Animated Pic
 var imageList=['images/1.png','images/2.png','images/3.png','images/4.png','images/5.png','images/6.png','images/7.png','images/8.png','images/9.png'];
 var i = 0;
 var renew = setInterval(function(){
@@ -66,3 +70,42 @@ var renew = setInterval(function(){
     i++;
     }
 },150);
+
+//Send Sms
+function sendSms(){
+    var senderName=document.getElementById("senderName").value; 
+
+    if(senderName != ""){
+        var kcMsg= greetings+name+"!! I ❤ you \n\nLove "+senderName;
+        var senderMsg=greetings+name+"!!\n\nFrom: " + senderName;
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Basic QUMwZDIyOWVmNGQ4N2JhMzhhZTMzMTk4ZjlmNTE5ZDM4OTpmNjYwYzIxN2NlODI1ODIyNjIyMWU1YzJjOTgxYzk1ZA==");
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("From", "+14783087208");
+        urlencoded.append("To", "+639309538032"); 
+
+        (senderName.toUpperCase() === "KC") ? urlencoded.append("Body", kcMsg ) : urlencoded.append("Body", senderMsg );
+        
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow'
+        };
+        
+        fetch("https://api.twilio.com/2010-04-01/Accounts/AC0d229ef4d87ba38ae33198f9f519d389/Messages.json", requestOptions)
+        .then(function(response){ 
+            document.getElementsByClassName("sendSms")[0].classList.add("hide");
+            document.getElementsByClassName("confirmationText")[0].classList.remove("hide");
+            document.getElementsByClassName("notifMsg")[0].innerHTML ="Thank you so much for sending Birthday Greeting to "+name+"<br>Your Message:"+"<br>"+senderMsg;          
+            
+            $(".confirmationText").fadeTo(10000, 8000).slideUp(500, function() {
+                $(".confirmationText").slideUp(500);
+              });
+        })
+        .catch(error => console.log('error', error));
+    }
+     
+}; 
