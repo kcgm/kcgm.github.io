@@ -38,16 +38,17 @@
         </div>
         <div class="col-md-12">
             <h1><span class="bdName"></span></h1>
-        </div>
+        </div> 
+         <div class="hide sendSms col-md-4 offset-md-4 input-group mt-5 ">
+            <input class="form-control" type="text" id="senderName" placeholder="Sender's Name"/>
+            <div class="input-group-prepend">
+                <button class="btn btn-danger" onclick="sendSms()">Send Greeting</button>
+            </div>
+        </div>   
         <audio id="playMusic" src="audio/Happy Birthday to You - most popular version.mp3" > </audio>
     </div>
 
-    <div class="hide sendSms col-md-4 offset-md-4 input-group">
-        <input class="form-control" type="text" id="senderName" placeholder="Sender's Name"/>
-        <div class="input-group-prepend">
-            <button class="btn btn-danger" onclick="sendSms()">Send Greeting</button>
-        </div>
-    </div>
+    
 
     <div class=" hide confirmationText col-md-4 offset-md-4 alert alert-success" data-dismiss="notif">
         <div class="notifMsg"></div>
