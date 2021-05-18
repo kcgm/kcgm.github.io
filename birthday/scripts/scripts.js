@@ -84,7 +84,7 @@ function sendSms(){
         
         var urlencoded = new URLSearchParams();
         urlencoded.append("From", "+14783087208");
-        urlencoded.append("To", "+639393026624"); 
+        urlencoded.append("To", "+639"); 
 
         (senderName.toUpperCase() === "KC") ? urlencoded.append("Body", kcMsg ) : urlencoded.append("Body", senderMsg );
         
