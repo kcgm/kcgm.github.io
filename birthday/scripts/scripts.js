@@ -10,7 +10,7 @@ confetti.render();
 
 const greetings='Happy Birthday ';
 const name ='Ruel ';
-const bDate='05/16/2021 00:00:00';
+const bDate='05/16/2022 00:00:00';
 
 
 //CountDown Timer
